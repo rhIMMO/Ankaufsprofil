@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ankaufsprofil | Rehrmann & Harms Immobilien</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:     #0f0f0d;
+      --cream:   #f5f0e8;
+      --gold:    #b8933a;
+      --gold-lt: #d4b06a;
+      --muted:   #6b6659;
+      --line:    rgba(184,147,58,.22);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .45;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    header::after {
+      content: 'RH';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(8rem, 22vw, 18rem);
+      font-weight: 300;
+      color: var(--gold);
+      opacity: .06;
+      pointer-events: none;
+      white-space: nowrap;
+      letter-spacing: .1em;
+    }
+
+    .logo-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: .5rem;
+    }
+
+    .logo-line span {
+      display: block;
+      width: 3rem; height: 1px;
+      background: var(--gold);
+    }
+
+    .logo-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      letter-spacing: .04em;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      margin-top: .6rem;
+      font-size: .85rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 4rem;
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .card {
+      background: var(--cream);
+      padding: 2.4rem 2.2rem;
+      position: relative;
+      animation: fadeUp .6s both;
+    }
+
+    .card:nth-child(1) { animation-delay: .05s; }
+    .card:nth-child(2) { animation-delay: .15s; }
+    .card:nth-child(3) { animation-delay: .25s; }
+    .card:nth-child(4) { animation-delay: .35s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      opacity: .55;
+    }
+
+    .card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      letter-spacing: .04em;
+      margin-bottom: 1.2rem;
+      padding-bottom: .8rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+
+    .card ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: .7rem;
+      font-size: .9rem;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .card ul li::before {
+      content: '—';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: .05em;
+    }
+
+    /* ── HIGHLIGHT PRICE CARD ── */
+    .card.highlight {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .card.highlight h2 {
+      color: var(--gold-lt);
+      border-color: rgba(184,147,58,.3);
+    }
+
+    .card.highlight ul li { color: #e8e2d6; }
+    .card.highlight ul li::before { color: var(--gold-lt); }
+
+    .price-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--gold-lt);
+      letter-spacing: .02em;
+      margin: .8rem 0 .3rem;
+      line-height: 1;
+    }
+
+    .price-subtitle {
+      font-size: .85rem;
+      color: #d4b06a;
+      font-style: italic;
+      line-height: 1.6;
+      margin-top: 1.2rem;
+      opacity: .95;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      margin-top: 4rem;
+      text-align: center;
+      animation: fadeUp .6s .45s both;
+    }
+
+    .contact-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 300;
+      letter-spacing: .06em;
+      margin-bottom: .4rem;
+    }
+
+    .contact-section p {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .contact-box {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .25rem;
+      border: 1px solid var(--line);
+      padding: 1.8rem 3rem;
+    }
+
+    .contact-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: .06em;
+    }
+
+    .contact-email {
+      font-size: .85rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: .08em;
+    }
+
+    .contact-email:hover { text-decoration: underline; }
+
+    .contact-phone {
+      font-size: .85rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: .08em;
+    }
+
+    .contact-phone:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--line);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      .contact-box { padding: 1.5rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-line">
+      <span></span>
+      <p class="logo-label">Rehrmann &amp; Harms Immobilien</p>
+      <span></span>
+    </div>
+    <h1>Ankaufsprofil</h1>
+    <p class="subtitle">Bochum · Essen · Mülheim · Ratingen · Düsseldorf & Umgebung</p>
+  </header>
+
+  <main>
+    <p class="intro">
+      Wir suchen gezielt renovierungsbedürftige Wohnimmobilien im Ruhrgebiet –
+      diskret, schnell und ohne Makler. Hier finden Sie unsere konkreten Ankaufskriterien.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <h2>Region &amp; Lage</h2>
+        <ul>
+          <li>Essen, Bochum, Mülheim, Ratingen &amp; Umgebung</li>
+          <li>A- &amp; B-Lagen der jeweiligen Städte</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🏢</div>
+        <h2>Objekte &amp; Merkmale</h2>
+        <ul>
+          <li>2–4 Zimmerwohnungen in MFH bis zu 30 Einheiten</li>
+          <li>Unvermietet oder bald freiwerdend</li>
+          <li>Mit Balkon oder Terrasse</li>
+          <li>Optional: mit Stellplatz</li>
+          <li>Energieeffizienzklasse H oder besser</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <h2>Zustand</h2>
+        <ul>
+          <li>Renovierungsbedürftig</li>
+          <li>Abgelebt – nach Langzeitvermietung</li>
+          <li>Messi- oder Problemimmobilien</li>
+        </ul>
+      </div>
+
+      <div class="card highlight">
+        <div class="card-icon">💰</div>
+        <h2>Preis</h2>
+        <p class="price-big">bis 350.000 €</p>
+        <p class="price-subtitle">ca. 1.000 €/m² unter Marktwert, ausgehend von gehobenen Verkaufspreisen – Premium-Immobilien</p>
+      </div>
+
+    </div>
+
+    <div class="contact-section">
+      <h3>Direkt Kontakt aufnehmen</h3>
+      <p>Wir antworten zügig und behandeln Ihr Anliegen vertraulich.</p>
+      <div class="contact-box">
+        <span class="contact-names">Florian Rehrmann &amp; Tim Harms</span>
+        <a class="contact-email" href="mailto:rh.immo@outlook.com">rh.immo@outlook.com</a>
+        <a class="contact-phone" href="tel:+491762484881">+49 176 244 85 881</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Rehrmann &amp; Harms Immobilien &nbsp;·&nbsp; Alle Angaben ohne Gewähr
+  </footer>
+
+</body>
+</html>
