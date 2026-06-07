@@ -125,7 +125,7 @@
     /* ── GRID ── */
     .grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 1.5px;
       background: var(--line);
       border: 1px solid var(--line);
@@ -149,9 +149,9 @@
     }
 
     .card-icon {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+      font-size: 1.2rem;
       opacity: .55;
+      flex-shrink: 0;
     }
 
     .card h2 {
@@ -159,10 +159,16 @@
       font-size: 1.45rem;
       font-weight: 400;
       letter-spacing: .04em;
+      color: var(--ink);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
       margin-bottom: 1.2rem;
       padding-bottom: .8rem;
       border-bottom: 1px solid var(--line);
-      color: var(--ink);
     }
 
     .card ul {
@@ -289,7 +295,6 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
-      .grid { grid-template-columns: 1fr; }
       .contact-box { padding: 1.5rem 2rem; }
     }
   </style>
@@ -308,15 +313,17 @@
 
   <main>
     <p class="intro">
-      Wir suchen gezielt renovierungsbedürftige Wohnimmobilien im Ruhrgebiet –
+      Wir suchen gezielt renovierungsbedürftige Wohnimmobilien im Rhein-Ruhrgebiet –
       diskret und zuverlässig. Hier finden Sie unsere konkreten Ankaufskriterien.
     </p>
 
     <div class="grid">
 
       <div class="card">
-        <div class="card-icon">📍</div>
-        <h2>Region &amp; Lage</h2>
+        <div class="card-header">
+          <div class="card-icon">📍</div>
+          <h2>Region &amp; Lage</h2>
+        </div>
         <ul>
           <li>Essen, Bochum, Mülheim, Ratingen &amp; Umgebung</li>
           <li>A- &amp; B-Lagen der jeweiligen Städte</li>
@@ -324,20 +331,24 @@
       </div>
 
       <div class="card">
-        <div class="card-icon">🏢</div>
-        <h2>Objekte &amp; Merkmale</h2>
+        <div class="card-header">
+          <div class="card-icon">🏢</div>
+          <h2>Objekte &amp; Merkmale</h2>
+        </div>
         <ul>
           <li>2–4 Zimmerwohnungen in MFH bis zu 30 Einheiten</li>
           <li>Unvermietet oder bald freiwerdend</li>
           <li>Mit Balkon oder Terrasse</li>
           <li>Optional: mit Stellplatz</li>
-          <li>Energieeffizienzklasse H oder besser</li>
+          <li>Energieeffizienzklasse E oder besser</li>
         </ul>
       </div>
 
       <div class="card">
-        <div class="card-icon">🔧</div>
-        <h2>Zustand</h2>
+        <div class="card-header">
+          <div class="card-icon">🔧</div>
+          <h2>Zustand</h2>
+        </div>
         <ul>
           <li>Renovierungsbedürftig</li>
           <li>Abgelebt – nach Langzeitvermietung</li>
@@ -346,8 +357,10 @@
       </div>
 
       <div class="card highlight">
-        <div class="card-icon">💰</div>
-        <h2>Preis</h2>
+        <div class="card-header">
+          <div class="card-icon">💰</div>
+          <h2>Preis</h2>
+        </div>
         <p class="price-big">bis 350.000 €</p>
         <p class="price-subtitle">ca. 1.000 €/m² unter Marktwert, ausgehend von gehobenen Verkaufspreisen – Premium-Immobilien</p>
       </div>
